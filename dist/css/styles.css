@@ -336,6 +336,7 @@ body {
 }
 .check__currency {
   align-self: flex-end;
+  min-width: 60px;
   padding-bottom: 5px;
   max-height: calc(1em + 0.75 * 10px);
   overflow: hidden;
