@@ -245,6 +245,12 @@ body {
   padding-top: 50%;
   padding-top: clamp(160px, 50%, 350px);
 }
+@supports (-ms-accelerator: true) {
+  .check__box {
+    box-shadow: 0 0 10px 10px #000;
+    outline: 1px solid orange;
+  }
+}
 .check__logo {
   -ms-grid-column-span: 1;
   grid-column: span 1;
@@ -612,5 +618,22 @@ body {
   }
   .check__sign--sign {
     margin-left: calc(10px * 0.5);
+  }
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS styles go here */
+}
+@media screen and (max-width: 320px) {
+  @supports (-ms-accelerator: true) {
+    .check__box {
+      padding-top: 160px;
+    }
+  }
+}
+@media screen and (min-width: 700px) {
+  @supports (-ms-accelerator: true) {
+    .check__box {
+      padding-top: 350px;
+    }
   }
 }
