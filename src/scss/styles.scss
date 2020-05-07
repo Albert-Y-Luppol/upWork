@@ -26,70 +26,93 @@ body {
 }
 
 $fz: 10px;
-$dash-size: 5px;
+$m8: 0.8;
+$m6: 0.6;
+$m5: 0.5;
+
+
+$dash-size: calc(#{$fz} * 0.5);
 $theme-color: mediumseagreen;
 $fill-color: beige;
 
 
 .check{
 
-    & * {
-        box-sizing: border-box;
-        &:before, &:after {
-          box-sizing: border-box;
+    &__text{
+
+        line-height: 1.5;
+        font-size: calc(#{$fz} * 1.6);
+
+        &--support{
+            font-size: calc(#{$fz} * 1.2);
+            text-transform: uppercase;
+        }
+        &--custom{
+            font-style: italic;
+            text-align: center;
+            font-size: calc(#{$fz} * 2);
+        }
+
+        &--info{
+            font-size: calc(#{$fz} * 1.4);
+            text-transform: uppercase;
         }
     }
 
     &__box{
-        // height: 300px;
-        margin: 50px auto;
-        font-size: 2 * $fz;
-        padding: $fz * 2;
-        width: clamp(450px, 100%, 600px);
+        margin: 50px auto; //temp
+        width: 100%;
+        min-width: 320px;
+        max-width: 700px;
+        width: clamp(320px, 100%, 700px);
+        position: relative;
+        padding-top: 50%;
+        padding-top: clamp(160px, 50%, 350px);
     }
 
 
-    width: 100%;
-    height: 100%;
+   position: absolute;
+   left: $fz;
+   top: $fz;
+   right: $fz;
+   bottom: $fz;
 
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    gap: 10px;
+    gap: $fz;
     border: $dash-size dashed $theme-color;
     box-shadow: 
-        0 0 0 ($dash-size / 2) darken($theme-color, 20%),
-        0 0 0 ($dash-size * 2.5) #fff,
-        inset 0 0 0 ($dash-size / 2) darken($theme-color, 20%),
-        0 $dash-size ($dash-size * 2) ($dash-size * 3) rgba(0,0,0,0.5),
-        // inset 0 0 0 ($dash-size * 1.2) #fff,
+        0 0 0 calc(#{$dash-size} / 2) darken($theme-color, 20%),
+        0 0 0 calc(#{$dash-size} * 2.5) #fff,
+        inset 0 0 0 calc(#{$dash-size} / 2) darken($theme-color, 20%),
+        0 $dash-size calc(#{$dash-size} * 2) calc(#{$dash-size} * 3) rgba(0,0,0,0.5),
+        // inset 0 0 0 calc(#{$dash-size} * 1.2) #fff,
         inset 0 0 100vw 100vw $fill-color;
-    padding: $fz * 2;
+    padding: calc(#{$fz} * 2);
 
     &__logo{
-        grid-column: span 2;
+        grid-column: span 1;
         grid-row: span 2;
-
-        & img {
-            max-height: 70px;
-        }
+        justify-self: center;
+        align-self: center;
+        font-size: calc(#{$fz} * 5);
     }
 
     &__info{
-        grid-column: span 3;
+        grid-column: span 4;
         grid-row: span 2;
-        text-transform: uppercase;
-        line-height: 1.5;
-        font-size: 1.2 * $fz;
-        padding-right: $fz * 2;
+        align-self: center;
+        padding: 0 calc(#{$fz} * 2);
 
         &--name {
             font-weight: bold;
             white-space: nowrap;
             overflow: hidden;
+            margin-bottom: calc(#{$fz});
         }
         &--address{
-            max-height: calc(1.5em * 3);
+            max-height: calc(1.5em * 2);
             overflow: hidden;
         }
 
@@ -98,150 +121,432 @@ $fill-color: beige;
     &__date{
         grid-column: span 2;
         grid-row: span 2;
-        font-style: italic;
         align-self: center;
         text-align: center;
-        position: relative;
-        padding-bottom: calc(#{$fz} * (1.2 + 1.25));
-        white-space: nowrap;
-        overflow: hidden;
 
-        &::before{
-            position: absolute;
-            content: "";
-            width: 100%;
-            bottom: calc(#{$fz} * (1.2 + 0.75));
+        &--date{
             border-bottom: 1px solid black;
-            left: 0;
         }
-        &::after{
-            content: "DATE";
-            position: absolute;
-            right: 20px;
-            bottom: 0;
-            font-size: 1.2 * $fz;
-            font-style: normal;
+
+        &--sign{
+            text-transform: uppercase;
+            line-height: 2;
         }
     }
 
     &__pay{
-        align-self: flex-end;
-        font-size: 1.6 * $fz;
+        align-self: center;
+        font-size: calc(#{$fz} * 1.6);
         white-space: nowrap;
+        line-height: 1.2;
     }
 
     &__name{
         grid-column: span 4;
-        align-self: flex-end;
-        padding-bottom: 5px;
-        text-align: center;
-        font-style: italic;
-        max-height: calc(1em + 0.75 * #{$fz});
+        align-self: center;
         overflow: hidden;
-
+        max-height: calc(1.5 * 2 * #{$fz});
         border-bottom: 1px solid black;
         border-right: 1px solid black;
     }
 
     &__sum{
         grid-column: span 2;
-        position: relative;
-        align-self: flex-end;
-        padding-bottom: 5px;
-        padding-left: 40px;
-        padding-top: 5px;
-        font-size: 2 * $fz;
-        font-style: italic;
-        max-height: calc(1em + 1 * #{$fz});
+        align-self: center;
         overflow: hidden;
+        display: flex;
+        justify-content: center;
 
+        &--sign{
+            font-size: calc(#{$fz} * 3);
+            margin-left: $fz;
+        }
 
-        &::before{
-            position: absolute;
-            content: "$";
-            left: 10px;
-            font-size: 3 * $fz;
-            bottom: 0px;
-            font-style: normal;
+        &--info{
+            white-space: nowrap;
+            align-self: center;
+            line-height: 2.5;
+            margin-left: calc(#{$fz} / 3);
         }
     }
 
     &__amount{
-        font-style: italic;
         align-self: flex-end;
-        padding-bottom: 5px;
         text-align: center;
         grid-column: span 5;
         border-bottom: 1px solid black;
-        max-height: calc(1em + 0.75 * #{$fz});
+        max-height: calc(1.5 * 2 * #{$fz});
         overflow: hidden;
     }
 
     &__currency{
         align-self: flex-end;
-        min-width: 6 * $fz;
-        padding-bottom: 5px;
-        max-height: calc(1em + 0.75 * #{$fz});
+        white-space: nowrap;
         overflow: hidden;
+        font-size: calc(#{$fz} * 2);
     }
 
     &__lock{
         display: flex;
         align-self:  flex-end;
-        padding-bottom: 5px;
-        font-size: 10px;
+        justify-self: center;
+        padding-bottom: calc(#{$fz} / 2);
+        font-size: $fz;
         & span {
-            padding-left: 5px;
+            padding-left: calc(#{$fz} / 2);
         }
         
         & i{
-            font-size: 2 * $fz;
+            font-size: calc(#{$fz} * 2);
+            align-self:  center;
         }
     }
 
     &__for{
-        font-style: italic;
         grid-column: span 4;
-        width: 100%;
         border-bottom: 1px solid black;
-        padding-left: 50px;
         align-self: flex-end;
-        padding-bottom: 5px;
-        max-height: calc(1em + 0.75 * #{$fz});
+        max-height: calc(1.5 * 2 * #{$fz});
         overflow: hidden;
-        position: relative;
+        display: flex;
 
-        &::before{
-            content: "FOR";
-            position: absolute;
-            left: 0;
-            bottom: 5px;
-            font-size: 1.2 * $fz;
-            font-style: normal;
+        &--sign{
+            margin-right: calc(#{$fz});
+            align-self: flex-end;
+            line-height: 2;
+        }
+
+        &--info{
+            flex-grow: 2;
         }
     }
 
     &__sign{
-        font-style: italic;
         grid-column: span 3;
-        width: 100%;
         border-bottom: 1px solid black;
-        padding-right: 25px;
         align-self: flex-end;
-        padding-bottom: 5px;
-        text-align: center;
-        max-height: calc(1em + 0.75 * #{$fz});
+        max-height: calc(1.5 * 2 * #{$fz});
         overflow: hidden;
+        display: flex;
+
+        &--info{
+            flex-grow: 2;
+        }
+
+        &--sign{
+            align-self: flex-end;
+            line-height: 2;
+            margin-left: calc(#{$fz});
+        }
+    }
+}
 
 
-        position: relative;
-        &::after{
-            content: "MP";
-            position: absolute;
-            right: 0;
-            bottom: 5px;
-            font-size: 1.2 * $fz;
-            font-style: normal;
+@media screen and (max-width: 600px) {
+    .check{
+
+        &__text{
+            font-size: calc(#{$fz} * #{$m8} * 1.6);
+    
+            &--support{
+                font-size: calc(#{$fz} * #{$m8} * 1.2);
+            }
+            &--custom{
+                font-size: calc(#{$fz} * #{$m8} * 2);
+            }
+    
+            &--info{
+                font-size: calc(#{$fz} * #{$m8} * 1.4);
+            }
+        }
+        
+        left: calc(#{$fz} * #{$m8});
+        top: calc(#{$fz} * #{$m8});
+        right: calc(#{$fz} * #{$m8});
+        bottom: calc(#{$fz} * #{$m8});
+        gap: calc(#{$fz} * #{$m8});
+        border: calc(#{$dash-size} * #{$m8}) dashed $theme-color;
+        box-shadow: 
+            0 0 0 calc(#{$dash-size} * #{$m8} / 2) darken($theme-color, 20%),
+            0 0 0 calc(#{$dash-size} * #{$m8} * 2.5) #fff,
+            inset 0 0 0 calc(#{$dash-size} * #{$m8} / 2) darken($theme-color, 20%),
+            0 $dash-size calc(#{$dash-size} * #{$m8} * 2) calc(#{$dash-size} * #{$m8} * 3) rgba(0,0,0,0.5),
+            // inset 0 0 0 calc(#{$dash-size} * #{$m8} * 1.2) #fff,
+            inset 0 0 100vw 100vw $fill-color;
+        padding: calc(#{$fz} * #{$m8} * 2);
+    
+        &__logo{
+            font-size: calc(#{$fz} * #{$m8} * 5);
+        }
+    
+        &__info{
+            padding: 0 calc(#{$fz} * #{$m8} * 2);
+    
+            &--name {
+                margin-bottom: calc(#{$fz} * #{$m8} / 2);
+            }
+    
+        }
+    
+        &__pay{
+            font-size: calc(#{$fz} * #{$m8} * 1.6);
+        }
+    
+        &__name{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m8});
+        }
+    
+        &__sum{
+            &--sign{
+                font-size: calc(#{$fz} * #{$m8} * 3);
+                margin-left: calc(#{$fz} * #{$m8});
+            }
+    
+            &--info{
+                margin-left: calc(#{$fz} * #{$m8} / 3);
+            }
+        }
+    
+        &__amount{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m8});
+        }
+    
+        &__currency{
+            font-size: calc(#{$fz} * #{$m8} * 2);
+        }
+    
+        &__lock{
+            padding-bottom: calc(#{$fz} * #{$m8} / 2);
+            font-size: calc(#{$fz} * #{$m8});
+            & span {
+                padding-left: calc(#{$fz} * #{$m8} / 2);
+            }
+            
+            & i{
+                font-size: calc(#{$fz} * #{$m8} * 2);
+            }
+        }
+    
+        &__for{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m8});
+    
+            &--sign{
+                margin-right: calc(#{$fz} * #{$m8});
+            }
+        }
+    
+        &__sign{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m8});
+           
+            &--sign{
+                margin-left: calc(#{$fz} * #{$m8});
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .check{
+
+        &__text{
+            font-size: calc(#{$fz} * #{$m6} * 1.6);
+    
+            &--support{
+                font-size: calc(#{$fz} * #{$m6} * 1.2);
+            }
+            &--custom{
+                font-size: calc(#{$fz} * #{$m6} * 2);
+            }
+    
+            &--info{
+                font-size: calc(#{$fz} * #{$m6} * 1.4);
+            }
+        }
+        
+        left: calc(#{$fz} * #{$m6});
+        top: calc(#{$fz} * #{$m6});
+        right: calc(#{$fz} * #{$m6});
+        bottom: calc(#{$fz} * #{$m6});
+        gap: calc(#{$fz} * #{$m6});
+        border: calc(#{$dash-size} * #{$m6}) dashed $theme-color;
+        box-shadow: 
+            0 0 0 calc(#{$dash-size} * #{$m6} / 2) darken($theme-color, 20%),
+            0 0 0 calc(#{$dash-size} * #{$m6} * 2.5) #fff,
+            inset 0 0 0 calc(#{$dash-size} * #{$m6} / 2) darken($theme-color, 20%),
+            0 $dash-size calc(#{$dash-size} * #{$m6} * 2) calc(#{$dash-size} * #{$m6} * 3) rgba(0,0,0,0.5),
+            // inset 0 0 0 calc(#{$dash-size} * #{$m6} * 1.2) #fff,
+            inset 0 0 100vw 100vw $fill-color;
+        padding: calc(#{$fz} * #{$m6} * 2);
+    
+        &__logo{
+            font-size: calc(#{$fz} * #{$m6} * 5);
+        }
+    
+        &__info{
+            padding: 0 calc(#{$fz} * #{$m6} * 2);
+    
+            &--name {
+                margin-bottom: calc(#{$fz} * #{$m6} / 2);
+            }
+    
+        }
+    
+        &__pay{
+            font-size: calc(#{$fz} * #{$m6} * 1.6);
+        }
+    
+        &__name{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m6});
+        }
+    
+        &__sum{
+            &--sign{
+                font-size: calc(#{$fz} * #{$m6} * 3);
+                margin-left: calc(#{$fz} * #{$m6});
+            }
+    
+            &--info{
+                margin-left: calc(#{$fz} * #{$m6} / 3);
+            }
+        }
+    
+        &__amount{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m6});
+        }
+    
+        &__currency{
+            font-size: calc(#{$fz} * #{$m6} * 2);
+        }
+    
+        &__lock{
+            padding-bottom: calc(#{$fz} * #{$m6} / 2);
+            font-size: calc(#{$fz} * #{$m6});
+            & span {
+                padding-left: calc(#{$fz} * #{$m6} / 2);
+            }
+            
+            & i{
+                font-size: calc(#{$fz} * #{$m6} * 2);
+            }
+        }
+    
+        &__for{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m6});
+    
+            &--sign{
+                margin-right: calc(#{$fz} * #{$m6});
+            }
+        }
+    
+        &__sign{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m6});
+           
+            &--sign{
+                margin-left: calc(#{$fz} * #{$m6});
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .check{
+
+        &__text{
+            font-size: calc(#{$fz} * #{$m5} * 1.6);
+    
+            &--support{
+                font-size: calc(#{$fz} * #{$m5} * 1.2);
+            }
+            &--custom{
+                font-size: calc(#{$fz} * #{$m5} * 2);
+            }
+    
+            &--info{
+                font-size: calc(#{$fz} * #{$m5} * 1.4);
+            }
+        }
+        
+        left: calc(#{$fz} * #{$m5});
+        top: calc(#{$fz} * #{$m5});
+        right: calc(#{$fz} * #{$m5});
+        bottom: calc(#{$fz} * #{$m5});
+        gap: calc(#{$fz} * #{$m5});
+        border: calc(#{$dash-size} * #{$m5}) dashed $theme-color;
+        box-shadow: 
+            0 0 0 calc(#{$dash-size} * #{$m5} / 2) darken($theme-color, 20%),
+            0 0 0 calc(#{$dash-size} * #{$m5} * 2.5) #fff,
+            inset 0 0 0 calc(#{$dash-size} * #{$m5} / 2) darken($theme-color, 20%),
+            0 $dash-size calc(#{$dash-size} * #{$m5} * 2) calc(#{$dash-size} * #{$m5} * 3) rgba(0,0,0,0.5),
+            // inset 0 0 0 calc(#{$dash-size} * #{$m5} * 1.2) #fff,
+            inset 0 0 100vw 100vw $fill-color;
+        padding: calc(#{$fz} * #{$m5} * 2);
+    
+        &__logo{
+            font-size: calc(#{$fz} * #{$m5} * 5);
+        }
+    
+        &__info{
+            padding: 0 calc(#{$fz} * #{$m5} * 2);
+    
+            &--name {
+                margin-bottom: calc(#{$fz} * #{$m5} / 2);
+            }
+    
+        }
+    
+        &__pay{
+            font-size: calc(#{$fz} * #{$m5} * 1.6);
+        }
+    
+        &__name{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m5});
+        }
+    
+        &__sum{
+            &--sign{
+                font-size: calc(#{$fz} * #{$m5} * 3);
+                margin-left: calc(#{$fz} * #{$m5});
+            }
+    
+            &--info{
+                margin-left: calc(#{$fz} * #{$m5} / 3);
+            }
+        }
+    
+        &__amount{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m5});
+        }
+    
+        &__currency{
+            font-size: calc(#{$fz} * #{$m5} * 2);
+        }
+    
+        &__lock{
+            padding-bottom: calc(#{$fz} * #{$m5} / 2);
+            font-size: calc(#{$fz} * #{$m5});
+            & span {
+                padding-left: calc(#{$fz} * #{$m5} / 2);
+            }
+            
+            & i{
+                font-size: calc(#{$fz} * #{$m5} * 2);
+            }
+        }
+    
+        &__for{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m5});
+    
+            &--sign{
+                margin-right: calc(#{$fz} * #{$m5});
+            }
+        }
+    
+        &__sign{
+            max-height: calc(1.5 * 2 * #{$fz} * #{$m5});
+           
+            &--sign{
+                margin-left: calc(#{$fz} * #{$m5});
+            }
         }
     }
 }

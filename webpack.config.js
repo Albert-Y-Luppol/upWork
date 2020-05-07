@@ -184,7 +184,7 @@ module.exports = {
         host: '192.168.0.187',
         // disableHostCheck: true,
         // overlay: true,
-        port: 1408,
+        port: 1406,
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         open: true,
