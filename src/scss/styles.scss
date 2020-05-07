@@ -347,6 +347,7 @@ $fill-color: beige;
 @media screen and (max-width: 500px) {
     .check{
 
+
         &__text{
             font-size: calc(#{$fz} * #{$m6} * 1.6);
     
@@ -449,7 +450,7 @@ $fill-color: beige;
 
 @media screen and (max-width: 400px) {
     .check{
-
+       
         &__text{
             font-size: calc(#{$fz} * #{$m5} * 1.6);
     
@@ -897,6 +898,15 @@ $fill-color: beige;
     
                 }
             }
+        }
+    }
+}
+
+@media not all and (min-resolution:.001dpcm){ 
+    @supports (-webkit-appearance:none) {
+        .check{
+            grid-template-rows: repeat(5, 1fr auto);
+            grid-template-columns: repeat(7, 1fr);
         }
     }
 }
