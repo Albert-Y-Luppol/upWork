@@ -40,7 +40,7 @@ body {
   grid-template-rows: repeat(5, 1fr);
   gap: 10px;
   border: calc(10px * 0.5) dashed mediumseagreen;
-  box-shadow: 0 0 0 calc(calc(10px * 0.5) / 2) #226741, 0 0 0 calc(calc(10px * 0.5) * 2.5) #fff, inset 0 0 0 calc(calc(10px * 0.5) / 2) #226741, 0 calc(10px * 0.5) calc(calc(10px * 0.5) * 2) calc(calc(10px * 0.5) * 3) rgba(0, 0, 0, 0.5), inset 0 0 100vw 100vw beige;
+  box-shadow: 0 0 0 calc(10px * 0.5 / 2) #226741, 0 0 0 calc(10px * 0.5 * 2.5) #fff, inset 0 0 0 calc(10px * 0.5 / 2) #226741, 0 calc(10px * 0.5) calc(10px * 0.5 * 2) calc(10px * 0.5 * 3) rgba(0, 0, 0, 0.5), inset 0 0 100vw 100vw beige;
   padding: calc(10px * 2);
 }
 
@@ -244,12 +244,6 @@ body {
   position: relative;
   padding-top: 50%;
   padding-top: clamp(160px, 50%, 350px);
-}
-@supports (-ms-accelerator: true) {
-  .check__box {
-    box-shadow: 0 0 10px 10px #000;
-    outline: 1px solid orange;
-  }
 }
 .check__logo {
   -ms-grid-column-span: 1;
@@ -622,18 +616,237 @@ body {
 }
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   /* IE10+ CSS styles go here */
+  .check__box {
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.15);
+    position: relative;
+    box-sizing: border-box;
+  }
+  .check__box::after {
+    content: "";
+    position: absolute;
+    left: calc(10px * 0.5 * 2.5 - 10px * 0.5);
+    right: calc(10px * 0.5 * 2.5 - 10px * 0.5);
+    top: calc(10px * 0.5 * 2.5 - 10px * 0.5);
+    bottom: calc(10px * 0.5 * 2.5 - 10px * 0.5);
+    border: calc(10px * 0.5 / 2) solid #226741;
+  }
+  .check__box::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: calc(10px * 0.5 * 2.5 + 10px * 0.5 / 2);
+    right: calc(10px * 0.5 * 2.5 + 10px * 0.5 / 2);
+    top: calc(10px * 0.5 * 2.5 + 10px * 0.5 / 2);
+    bottom: calc(10px * 0.5 * 2.5 + 10px * 0.5 / 2);
+    border: calc(10px * 0.5 / 2) solid #226741;
+  }
+  .check > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    -ms-grid-row-span: 3;
+  }
+  .check > *:nth-child(2) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 7;
+    -ms-grid-row-span: 3;
+  }
+  .check > *:nth-child(3) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 11;
+    -ms-grid-column-span: 3;
+    -ms-grid-row-span: 3;
+  }
+  .check > *:nth-child(4) {
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    -ms-grid-row-span: 1;
+  }
+  .check > *:nth-child(5) {
+    -ms-grid-row: 5;
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 7;
+    -ms-grid-row-span: 1;
+  }
+  .check > *:nth-child(6) {
+    -ms-grid-row: 5;
+    -ms-grid-column: 11;
+    -ms-grid-column-span: 3;
+    -ms-grid-row-span: 1;
+  }
+  .check > *:nth-child(7) {
+    -ms-grid-row: 7;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 9;
+    -ms-grid-row-span: 1;
+  }
+  .check > *:nth-child(8) {
+    -ms-grid-row: 7;
+    -ms-grid-column: 11;
+    -ms-grid-column-span: 1;
+    -ms-grid-row-span: 1;
+  }
+  .check > *:nth-child(9) {
+    -ms-grid-row: 7;
+    -ms-grid-column: 13;
+    -ms-grid-column-span: 1;
+    -ms-grid-row-span: 1;
+  }
+  .check > *:nth-child(10) {
+    -ms-grid-row: 9;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 7;
+    -ms-grid-row-span: 1;
+  }
+  .check > *:nth-child(11) {
+    -ms-grid-row: 9;
+    -ms-grid-column: 9;
+    -ms-grid-column-span: 5;
+    -ms-grid-row-span: 1;
+  }
 }
-@media screen and (max-width: 320px) {
-  @supports (-ms-accelerator: true) {
+@media screen and (-ms-high-contrast: none) and (max-width: 600px), screen and (-ms-high-contrast: active) and (max-width: 600px) {
+  .check__box::after {
+    left: calc(10px * 0.5 * 0.8 * 2.5 - 10px * 0.5 * 0.8);
+    right: calc(10px * 0.5 * 0.8 * 2.5 - 10px * 0.5 * 0.8);
+    top: calc(10px * 0.5 * 0.8 * 2.5 - 10px * 0.5 * 0.8);
+    bottom: calc(10px * 0.5 * 0.8 * 2.5 - 10px * 0.5 * 0.8);
+    border: calc(10px * 0.5 * 0.8 / 2) solid #226741;
+  }
+  .check__box::before {
+    left: calc(10px * 0.5 * 0.8 * 2.5 + 10px * 0.5 * 0.8 / 2);
+    right: calc(10px * 0.5 * 0.8 * 2.5 + 10px * 0.5 * 0.8 / 2);
+    top: calc(10px * 0.5 * 0.8 * 2.5 + 10px * 0.5 * 0.8 / 2);
+    bottom: calc(10px * 0.5 * 0.8 * 2.5 + 10px * 0.5 * 0.8 / 2);
+    border: calc(10px * 0.5 * 0.8 / 2) solid #226741;
+  }
+}
+@media screen and (-ms-high-contrast: none) and (max-width: 500px), screen and (-ms-high-contrast: active) and (max-width: 500px) {
+  .check__box::after {
+    left: calc(10px * 0.5 * 0.6 * 2.5 - 10px * 0.5 * 0.6);
+    right: calc(10px * 0.5 * 0.6 * 2.5 - 10px * 0.5 * 0.6);
+    top: calc(10px * 0.5 * 0.6 * 2.5 - 10px * 0.5 * 0.6);
+    bottom: calc(10px * 0.5 * 0.6 * 2.5 - 10px * 0.5 * 0.6);
+    border: calc(10px * 0.5 * 0.6 / 2) solid #226741;
+  }
+  .check__box::before {
+    left: calc(10px * 0.5 * 0.6 * 2.5 + 10px * 0.5 * 0.6 / 2);
+    right: calc(10px * 0.5 * 0.6 * 2.5 + 10px * 0.5 * 0.6 / 2);
+    top: calc(10px * 0.5 * 0.6 * 2.5 + 10px * 0.5 * 0.6 / 2);
+    bottom: calc(10px * 0.5 * 0.6 * 2.5 + 10px * 0.5 * 0.6 / 2);
+    border: calc(10px * 0.5 * 0.6 / 2) solid #226741;
+  }
+}
+@media screen and (-ms-high-contrast: none) and (max-width: 400px), screen and (-ms-high-contrast: active) and (max-width: 400px) {
+  .check__box::after {
+    left: calc(10px * 0.5 * 0.5 * 2.5 - 10px * 0.5 * 0.5);
+    right: calc(10px * 0.5 * 0.5 * 2.5 - 10px * 0.5 * 0.5);
+    top: calc(10px * 0.5 * 0.5 * 2.5 - 10px * 0.5 * 0.5);
+    bottom: calc(10px * 0.5 * 0.5 * 2.5 - 10px * 0.5 * 0.5);
+    border: calc(10px * 0.5 * 0.5 / 2) solid #226741;
+  }
+  .check__box::before {
+    left: calc(10px * 0.5 * 0.5 * 2.5 + 10px * 0.5 * 0.5 / 2);
+    right: calc(10px * 0.5 * 0.5 * 2.5 + 10px * 0.5 * 0.5 / 2);
+    top: calc(10px * 0.5 * 0.5 * 2.5 + 10px * 0.5 * 0.5 / 2);
+    bottom: calc(10px * 0.5 * 0.5 * 2.5 + 10px * 0.5 * 0.5 / 2);
+    border: calc(10px * 0.5 * 0.5 / 2) solid #226741;
+  }
+}
+@media screen and (-ms-high-contrast: none) and (max-width: 320px), screen and (-ms-high-contrast: active) and (max-width: 320px) {
+  .check__box {
+    padding-top: 160px;
+  }
+}
+@media screen and (-ms-high-contrast: none) and (min-width: 700px), screen and (-ms-high-contrast: active) and (min-width: 700px) {
+  .check__box {
+    padding-top: 350px;
+  }
+}
+@supports (not (-webkit-hyphens: none)) and (not (-moz-appearance: none)) {
+  .check__box {
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.15);
+    position: relative;
+    box-sizing: border-box;
+  }
+  .check__box::after {
+    content: "";
+    position: absolute;
+    left: calc(calc(10px * 0.5) * 2.5 - calc(10px * 0.5));
+    right: calc(calc(10px * 0.5) * 2.5 - calc(10px * 0.5));
+    top: calc(calc(10px * 0.5) * 2.5 - calc(10px * 0.5));
+    bottom: calc(calc(10px * 0.5) * 2.5 - calc(10px * 0.5));
+    border: calc(calc(10px * 0.5) / 2) solid #226741;
+  }
+  .check__box::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: calc(calc(10px * 0.5) * 2.5 + calc(10px * 0.5) / 2);
+    right: calc(calc(10px * 0.5) * 2.5 + calc(10px * 0.5) / 2);
+    top: calc(calc(10px * 0.5) * 2.5 + calc(10px * 0.5) / 2);
+    bottom: calc(calc(10px * 0.5) * 2.5 + calc(10px * 0.5) / 2);
+    border: calc(calc(10px * 0.5) / 2) solid #226741;
+  }
+
+  @media screen and (max-width: 320px) {
     .check__box {
       padding-top: 160px;
     }
   }
-}
-@media screen and (min-width: 700px) {
-  @supports (-ms-accelerator: true) {
+  @media screen and (min-width: 700px) {
     .check__box {
       padding-top: 350px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .check__box::after {
+      left: calc(calc(10px * 0.5) * 0.8 * 2.5 - calc(10px * 0.5) * 0.8);
+      right: calc(calc(10px * 0.5) * 0.8 * 2.5 - calc(10px * 0.5) * 0.8);
+      top: calc(calc(10px * 0.5) * 0.8 * 2.5 - calc(10px * 0.5) * 0.8);
+      bottom: calc(calc(10px * 0.5) * 0.8 * 2.5 - calc(10px * 0.5) * 0.8);
+      border: calc(calc(10px * 0.5) * 0.8 / 2) solid #226741;
+    }
+    .check__box::before {
+      left: calc(calc(10px * 0.5) * 0.8 * 2.5 + calc(10px * 0.5) * 0.8 / 2);
+      right: calc(calc(10px * 0.5) * 0.8 * 2.5 + calc(10px * 0.5) * 0.8 / 2);
+      top: calc(calc(10px * 0.5) * 0.8 * 2.5 + calc(10px * 0.5) * 0.8 / 2);
+      bottom: calc(calc(10px * 0.5) * 0.8 * 2.5 + calc(10px * 0.5) * 0.8 / 2);
+      border: calc(calc(10px * 0.5) * 0.8 / 2) solid #226741;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .check__box::after {
+      left: calc(calc(10px * 0.5) * 0.6 * 2.5 - calc(10px * 0.5) * 0.6);
+      right: calc(calc(10px * 0.5) * 0.6 * 2.5 - calc(10px * 0.5) * 0.6);
+      top: calc(calc(10px * 0.5) * 0.6 * 2.5 - calc(10px * 0.5) * 0.6);
+      bottom: calc(calc(10px * 0.5) * 0.6 * 2.5 - calc(10px * 0.5) * 0.6);
+      border: calc(calc(10px * 0.5) * 0.6 / 2) solid #226741;
+    }
+    .check__box::before {
+      left: calc(calc(10px * 0.5) * 0.6 * 2.5 + calc(10px * 0.5) * 0.6 / 2);
+      right: calc(calc(10px * 0.5) * 0.6 * 2.5 + calc(10px * 0.5) * 0.6 / 2);
+      top: calc(calc(10px * 0.5) * 0.6 * 2.5 + calc(10px * 0.5) * 0.6 / 2);
+      bottom: calc(calc(10px * 0.5) * 0.6 * 2.5 + calc(10px * 0.5) * 0.6 / 2);
+      border: calc(calc(10px * 0.5) * 0.6 / 2) solid #226741;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .check__box::after {
+      left: calc(calc(10px * 0.5) * 0.5 * 2.5 - calc(10px * 0.5) * 0.5);
+      right: calc(calc(10px * 0.5) * 0.5 * 2.5 - calc(10px * 0.5) * 0.5);
+      top: calc(calc(10px * 0.5) * 0.5 * 2.5 - calc(10px * 0.5) * 0.5);
+      bottom: calc(calc(10px * 0.5) * 0.5 * 2.5 - calc(10px * 0.5) * 0.5);
+      border: calc(calc(10px * 0.5) * 0.5 / 2) solid #226741;
+    }
+    .check__box::before {
+      left: calc(calc(10px * 0.5) * 0.5 * 2.5 + calc(10px * 0.5) * 0.5 / 2);
+      right: calc(calc(10px * 0.5) * 0.5 * 2.5 + calc(10px * 0.5) * 0.5 / 2);
+      top: calc(calc(10px * 0.5) * 0.5 * 2.5 + calc(10px * 0.5) * 0.5 / 2);
+      bottom: calc(calc(10px * 0.5) * 0.5 * 2.5 + calc(10px * 0.5) * 0.5 / 2);
+      border: calc(calc(10px * 0.5) * 0.5 / 2) solid #226741;
     }
   }
 }

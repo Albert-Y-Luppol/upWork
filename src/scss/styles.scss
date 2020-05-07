@@ -68,16 +68,6 @@ $fill-color: beige;
         position: relative;
         padding-top: 50%;
         padding-top: clamp(160px, 50%, 350px);
-        
-        @supports (-ms-accelerator:true) {
-            & {
-
-                box-shadow: 0 0 10px 10px #000;
-                outline: 1px solid orange;
-
-                
-            }
-        }
     }
 
 
@@ -93,11 +83,10 @@ $fill-color: beige;
     gap: $fz;
     border: $dash-size dashed $theme-color;
     box-shadow: 
-        0 0 0 calc(#{$dash-size} / 2) darken($theme-color, 20%),
-        0 0 0 calc(#{$dash-size} * 2.5) #fff,
-        inset 0 0 0 calc(#{$dash-size} / 2) darken($theme-color, 20%),
-        0 $dash-size calc(#{$dash-size} * 2) calc(#{$dash-size} * 3) rgba(0,0,0,0.5),
-        // inset 0 0 0 calc(#{$dash-size} * 1.2) #fff,
+        0 0 0 calc(#{$fz} * 0.5 / 2) darken($theme-color, 20%),
+        0 0 0 calc(#{$fz} * 0.5 * 2.5) #fff,
+        inset 0 0 0 calc(#{$fz} * 0.5 / 2) darken($theme-color, 20%),
+        0 $dash-size calc(#{$fz} * 0.5 * 2) calc(#{$fz} * 0.5 * 3) rgba(0,0,0,0.5),
         inset 0 0 100vw 100vw $fill-color;
     padding: calc(#{$fz} * 2);
 
@@ -282,7 +271,6 @@ $fill-color: beige;
             0 0 0 calc(#{$dash-size} * #{$m8} * 2.5) #fff,
             inset 0 0 0 calc(#{$dash-size} * #{$m8} / 2) darken($theme-color, 20%),
             0 $dash-size calc(#{$dash-size} * #{$m8} * 2) calc(#{$dash-size} * #{$m8} * 3) rgba(0,0,0,0.5),
-            // inset 0 0 0 calc(#{$dash-size} * #{$m8} * 1.2) #fff,
             inset 0 0 100vw 100vw $fill-color;
         padding: calc(#{$fz} * #{$m8} * 2);
     
@@ -567,27 +555,347 @@ $fill-color: beige;
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     /* IE10+ CSS styles go here */
 
+    .check{
 
-}
 
+        &__box{
+            // outline:  25px solid orange;
+            box-shadow: 0 0 3px 3px rgba(0,0,0,0.15);
+            position: relative;
+            box-sizing: border-box;
 
-@media screen and (max-width: 320px) {
-    @supports (-ms-accelerator:true) {
+            &::after{
+                content: "";
+                position: absolute;
+                left: calc(#{$fz} * 0.5 * 2.5 - #{$fz} * 0.5);
+                right: calc(#{$fz} * 0.5 * 2.5 - #{$fz} * 0.5);
+                top: calc(#{$fz} * 0.5 * 2.5 - #{$fz} * 0.5);
+                bottom: calc(#{$fz} * 0.5 * 2.5 - #{$fz} * 0.5);
+                border: calc(#{$fz} * 0.5 / 2) solid darken($theme-color, 20%);
+
+            }
+
+            &::before{
+                content: "";
+                // outline: 25px solid red;
+                // display: inline-block;
+                position: absolute;
+                z-index: 1;
+                left: calc(#{$fz} * 0.5 * 2.5 + #{$fz} * 0.5 / 2);
+                right: calc(#{$fz} * 0.5 * 2.5 + #{$fz} * 0.5 / 2);
+                top: calc(#{$fz} * 0.5 * 2.5 + #{$fz} * 0.5 / 2);
+                bottom: calc(#{$fz} * 0.5 * 2.5 + #{$fz} * 0.5 / 2);
+                border: calc(#{$fz} * 0.5 / 2) solid darken($theme-color, 20%);
+
+            }
+        }
+
+        //logo
+        &>*:nth-child(1){
+            -ms-grid-row:1; 
+            -ms-grid-column:1; 
+            -ms-grid-column-span:1;
+            -ms-grid-row-span:3;
+        }
+    
+        //info
+        &>*:nth-child(2){
+            -ms-grid-row:1; 
+            -ms-grid-column:3; 
+            -ms-grid-column-span:7;
+            -ms-grid-row-span:3;
+        }
+    
+        //date
+        &>*:nth-child(3){
+            -ms-grid-row:1; 
+            -ms-grid-column:11; 
+            -ms-grid-column-span:3;
+            -ms-grid-row-span:3;
+        }
+    
+        //pay
+        &>*:nth-child(4){
+            -ms-grid-row:5; 
+            -ms-grid-column:1; 
+            -ms-grid-column-span:1;
+            -ms-grid-row-span:1;
+        }
+    
+        //name
+        &>*:nth-child(5){
+            -ms-grid-row:5; 
+            -ms-grid-column:3; 
+            -ms-grid-column-span: 7;
+            -ms-grid-row-span:1;
+        }
+    
+        //sum
+        &>*:nth-child(6){
+            -ms-grid-row: 5; 
+            -ms-grid-column:11; 
+            -ms-grid-column-span:3;
+            -ms-grid-row-span:1;
+        }
+    
+        //amount
+        &>*:nth-child(7){
+            -ms-grid-row:7; 
+            -ms-grid-column:1; 
+            -ms-grid-column-span:9;
+            -ms-grid-row-span:1;
+        }
+    
+        //currency
+        &>*:nth-child(8){
+            -ms-grid-row:7; 
+            -ms-grid-column:11; 
+            -ms-grid-column-span:1;
+            -ms-grid-row-span:1;
+        }
+    
+        //lock
+        &>*:nth-child(9){
+            -ms-grid-row:7; 
+            -ms-grid-column:13; 
+            -ms-grid-column-span:1;
+            -ms-grid-row-span:1;
+        }
+    
+        //for
+        &>*:nth-child(10){
+            -ms-grid-row:9; 
+            -ms-grid-column:1; 
+            -ms-grid-column-span:7;
+            -ms-grid-row-span:1;
+        }
+    
+        //sign
+        &>*:nth-child(11){
+            -ms-grid-row:9; 
+            -ms-grid-column:9; 
+            -ms-grid-column-span:5;
+            -ms-grid-row-span:1;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
         .check{
             &__box{
-                
+                &::after{
+                    left: calc(#{$fz} * 0.5 * #{$m8} * 2.5 - #{$fz} * 0.5 * #{$m8});
+                    right: calc(#{$fz} * 0.5 * #{$m8} * 2.5 - #{$fz} * 0.5 * #{$m8});
+                    top: calc(#{$fz} * 0.5 * #{$m8} * 2.5 - #{$fz} * 0.5 * #{$m8});
+                    bottom: calc(#{$fz} * 0.5 * #{$m8} * 2.5 - #{$fz} * 0.5 * #{$m8});
+                    border: calc(#{$fz} * 0.5 * #{$m8} / 2) solid darken($theme-color, 20%);
+    
+                }
+    
+                &::before{
+                    left: calc(#{$fz} * 0.5 * #{$m8} * 2.5 + #{$fz} * 0.5 * #{$m8} / 2);
+                    right: calc(#{$fz} * 0.5 * #{$m8} * 2.5 + #{$fz} * 0.5 * #{$m8} / 2);
+                    top: calc(#{$fz} * 0.5 * #{$m8} * 2.5 + #{$fz} * 0.5 * #{$m8} / 2);
+                    bottom: calc(#{$fz} * 0.5 * #{$m8} * 2.5 + #{$fz} * 0.5 * #{$m8} / 2);
+                    border: calc(#{$fz} * 0.5 * #{$m8} / 2) solid darken($theme-color, 20%);
+    
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width: 500px) {
+        .check{
+            &__box{
+                &::after{
+                    left: calc(#{$fz} * 0.5 * #{$m6} * 2.5 - #{$fz} * 0.5 * #{$m6});
+                    right: calc(#{$fz} * 0.5 * #{$m6} * 2.5 - #{$fz} * 0.5 * #{$m6});
+                    top: calc(#{$fz} * 0.5 * #{$m6} * 2.5 - #{$fz} * 0.5 * #{$m6});
+                    bottom: calc(#{$fz} * 0.5 * #{$m6} * 2.5 - #{$fz} * 0.5 * #{$m6});
+                    border: calc(#{$fz} * 0.5 * #{$m6} / 2) solid darken($theme-color, 20%);
+    
+                }
+    
+                &::before{
+                    left: calc(#{$fz} * 0.5 * #{$m6} * 2.5 + #{$fz} * 0.5 * #{$m6} / 2);
+                    right: calc(#{$fz} * 0.5 * #{$m6} * 2.5 + #{$fz} * 0.5 * #{$m6} / 2);
+                    top: calc(#{$fz} * 0.5 * #{$m6} * 2.5 + #{$fz} * 0.5 * #{$m6} / 2);
+                    bottom: calc(#{$fz} * 0.5 * #{$m6} * 2.5 + #{$fz} * 0.5 * #{$m6} / 2);
+                    border: calc(#{$fz} * 0.5 * #{$m6} / 2) solid darken($theme-color, 20%);
+    
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width: 400px) {
+        .check{
+            &__box{
+                &::after{
+                    left: calc(#{$fz} * 0.5 * #{$m5} * 2.5 - #{$fz} * 0.5 * #{$m5});
+                    right: calc(#{$fz} * 0.5 * #{$m5} * 2.5 - #{$fz} * 0.5 * #{$m5});
+                    top: calc(#{$fz} * 0.5 * #{$m5} * 2.5 - #{$fz} * 0.5 * #{$m5});
+                    bottom: calc(#{$fz} * 0.5 * #{$m5} * 2.5 - #{$fz} * 0.5 * #{$m5});
+                    border: calc(#{$fz} * 0.5 * #{$m5} / 2) solid darken($theme-color, 20%);
+    
+                }
+    
+                &::before{
+                    left: calc(#{$fz} * 0.5 * #{$m5} * 2.5 + #{$fz} * 0.5 * #{$m5} / 2);
+                    right: calc(#{$fz} * 0.5 * #{$m5} * 2.5 + #{$fz} * 0.5 * #{$m5} / 2);
+                    top: calc(#{$fz} * 0.5 * #{$m5} * 2.5 + #{$fz} * 0.5 * #{$m5} / 2);
+                    bottom: calc(#{$fz} * 0.5 * #{$m5} * 2.5 + #{$fz} * 0.5 * #{$m5} / 2);
+                    border: calc(#{$fz} * 0.5 * #{$m5} / 2) solid darken($theme-color, 20%);
+    
+                }
+            }
+        }
+    }
+
+
+    @media screen and (max-width: 320px) {
+        .check{
+            &__box{
                 padding-top: 160px;
             }
         }
     }
-}
 
-@media screen and (min-width: 700px) {
-    @supports (-ms-accelerator:true) {
+    @media screen and (min-width: 700px) {
         .check{
             &__box{
-                
                 padding-top: 350px;
+                
+            }
+        }
+    }
+
+}
+
+@supports (not (-webkit-hyphens:none)) and (not (-moz-appearance:none)) {
+
+    .check{
+        &__box{
+            box-shadow: 0 0 3px 3px rgba(0,0,0,0.15);
+            position: relative;
+            box-sizing: border-box;
+            // z-index: 1;
+            // outline: 25px solid orange;
+
+            &::after{
+                content: "";
+                // outline: 25px solid red;
+                // display: inline-block;
+                position: absolute;
+                // z-index: 10;
+                left: calc(#{$dash-size} * 2.5 - #{$dash-size});
+                right: calc(#{$dash-size} * 2.5 - #{$dash-size});
+                top: calc(#{$dash-size} * 2.5 - #{$dash-size});
+                bottom: calc(#{$dash-size} * 2.5 - #{$dash-size});
+                border: calc(#{$dash-size} / 2) solid darken($theme-color, 20%);
+
+            }
+
+            &::before{
+                content: "";
+                // outline: 25px solid red;
+                // display: inline-block;
+                position: absolute;
+                z-index: 1;
+                left: calc(#{$dash-size} * 2.5 + #{$dash-size} / 2);
+                right: calc(#{$dash-size} * 2.5 + #{$dash-size} / 2);
+                top: calc(#{$dash-size} * 2.5 + #{$dash-size} / 2);
+                bottom: calc(#{$dash-size} * 2.5 + #{$dash-size} / 2);
+                border: calc(#{$dash-size} / 2) solid darken($theme-color, 20%);
+
+            }
+        }
+    }
+
+    @media screen and (max-width: 320px) {
+        .check{
+            &__box{
+                padding-top: 160px;
+            }
+        }
+    }
+
+    @media screen and (min-width: 700px) {
+        .check{
+            &__box{
+                padding-top: 350px;
+                
+            }
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .check{
+            &__box{
+                &::after{
+                    left: calc(#{$dash-size} * #{$m8} * 2.5 - #{$dash-size} * #{$m8});
+                    right: calc(#{$dash-size} * #{$m8} * 2.5 - #{$dash-size} * #{$m8});
+                    top: calc(#{$dash-size} * #{$m8} * 2.5 - #{$dash-size} * #{$m8});
+                    bottom: calc(#{$dash-size} * #{$m8} * 2.5 - #{$dash-size} * #{$m8});
+                    border: calc(#{$dash-size} * #{$m8} / 2) solid darken($theme-color, 20%);
+    
+                }
+    
+                &::before{
+                    left: calc(#{$dash-size} * #{$m8} * 2.5 + #{$dash-size} * #{$m8} / 2);
+                    right: calc(#{$dash-size} * #{$m8} * 2.5 + #{$dash-size} * #{$m8} / 2);
+                    top: calc(#{$dash-size} * #{$m8} * 2.5 + #{$dash-size} * #{$m8} / 2);
+                    bottom: calc(#{$dash-size} * #{$m8} * 2.5 + #{$dash-size} * #{$m8} / 2);
+                    border: calc(#{$dash-size} * #{$m8} / 2) solid darken($theme-color, 20%);
+    
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width: 500px) {
+        .check{
+            &__box{
+                &::after{
+                    left: calc(#{$dash-size} * #{$m6} * 2.5 - #{$dash-size} * #{$m6});
+                    right: calc(#{$dash-size} * #{$m6} * 2.5 - #{$dash-size} * #{$m6});
+                    top: calc(#{$dash-size} * #{$m6} * 2.5 - #{$dash-size} * #{$m6});
+                    bottom: calc(#{$dash-size} * #{$m6} * 2.5 - #{$dash-size} * #{$m6});
+                    border: calc(#{$dash-size} * #{$m6} / 2) solid darken($theme-color, 20%);
+    
+                }
+    
+                &::before{
+                    left: calc(#{$dash-size} * #{$m6} * 2.5 + #{$dash-size} * #{$m6} / 2);
+                    right: calc(#{$dash-size} * #{$m6} * 2.5 + #{$dash-size} * #{$m6} / 2);
+                    top: calc(#{$dash-size} * #{$m6} * 2.5 + #{$dash-size} * #{$m6} / 2);
+                    bottom: calc(#{$dash-size} * #{$m6} * 2.5 + #{$dash-size} * #{$m6} / 2);
+                    border: calc(#{$dash-size} * #{$m6} / 2) solid darken($theme-color, 20%);
+    
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width: 400px) {
+        .check{
+            &__box{
+                &::after{
+                    left: calc(#{$dash-size} * #{$m5} * 2.5 - #{$dash-size} * #{$m5});
+                    right: calc(#{$dash-size} * #{$m5} * 2.5 - #{$dash-size} * #{$m5});
+                    top: calc(#{$dash-size} * #{$m5} * 2.5 - #{$dash-size} * #{$m5});
+                    bottom: calc(#{$dash-size} * #{$m5} * 2.5 - #{$dash-size} * #{$m5});
+                    border: calc(#{$dash-size} * #{$m5} / 2) solid darken($theme-color, 20%);
+    
+                }
+    
+                &::before{
+                    left: calc(#{$dash-size} * #{$m5} * 2.5 + #{$dash-size} * #{$m5} / 2);
+                    right: calc(#{$dash-size} * #{$m5} * 2.5 + #{$dash-size} * #{$m5} / 2);
+                    top: calc(#{$dash-size} * #{$m5} * 2.5 + #{$dash-size} * #{$m5} / 2);
+                    bottom: calc(#{$dash-size} * #{$m5} * 2.5 + #{$dash-size} * #{$m5} / 2);
+                    border: calc(#{$dash-size} * #{$m5} / 2) solid darken($theme-color, 20%);
+    
+                }
             }
         }
     }
