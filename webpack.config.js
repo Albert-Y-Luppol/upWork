@@ -172,6 +172,9 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: './css/styles.css',
         }),
+        new MiniCssExtractPlugin({
+            filename: './css/card.css',
+        }),
 
         // new webpack.HotModuleReplacementPlugin(),
 
